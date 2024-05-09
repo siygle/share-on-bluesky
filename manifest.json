@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Share on BlueSky",
+  "description": "Share the current page on BlueSky",
+  "icons": {
+    "16": "images/icons/icon_16.jpeg",
+    "48": "images/icons/icon_48.jpeg"
+  },
+  "permissions": [
+    "contextMenus",
+    "activeTabs",
+    "https://bsky.app/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
