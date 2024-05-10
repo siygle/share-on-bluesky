@@ -14,18 +14,11 @@ chrome.runtime.onInstalled.addListener(function () {
       id: context
     });
   }
-  // Intentionally create an invalid item, to show off error checking in the
-  // create callback.
-  chrome.contextMenus.create(
-    { title: 'Oops', parentId: 999, id: 'errorItem' },
-    function () {
-      if (chrome.runtime.lastError) {
-        console.log('Got expected error: ' + chrome.runtime.lastError.message);
-      }
-    }
-  );
-  chrome.contextMenus.onClicked.addListener(genericOnClick);
 });
+
+// Move the context menu listener to the root level to avoid the terminated issue
+// src: https://stackoverflow.com/a/69012673
+chrome.contextMenus.onClicked.addListener(genericOnClick);
 
 function genericOnClick(data, tab) {
   if ('page' === data.menuItemId) skeet(data.pageUrl, tab.title);
